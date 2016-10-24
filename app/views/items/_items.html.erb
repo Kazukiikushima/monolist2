@@ -4,11 +4,10 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <% if item.medium_image_urls.present? %>
-              <% large_image = item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '') %>
-              <%= image_tag(large_image , alt: item['itemName']) %>
+            <% if item['imageFlag'] == 1 %>
+                <%= image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', ''), alt: item['itemName']) %>
             <% else %>
-              <%= image_tag("no-image.png" , alt: item.title) %>
+                <%= image_tag("no-image.png" , alt: item['itemName']) %>
             <% end %>
           </div>
         </div>
