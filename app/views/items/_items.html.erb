@@ -4,8 +4,12 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <% #TODO 商品画像 %>
-            <%= image_tag("no-image.png" , alt: item['itemName']) %>
+            <% if item.medium_image_urls.present? %>
+              <% large_image = item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '') %>
+              <%= image_tag(large_image , alt: item['itemName']) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.title) %>
+            <% end %>
           </div>
         </div>
         <div class="detail">
