@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+    <h1>Wantランキング</h1>
+    <% @items.each_with_index do |item , index| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+
+            <% if item.medium_image.present? %>
+              <%= image_tag(item.medium_image , alt: item.title) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.title) %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="title">
+            <% want_number = item.want_users.count %>
+            <span class="ranking-label label label-info">
+              <%= index + 1 %>位 (<%= want_number %>)
+            </span>
+            <%= link_to item.title , item %>
+          </div>
+        </div>
+        <%= render 'items/action' , item: item if logged_in? %>
+      </div>
+    <% end %>
+  </div>
+</div>
